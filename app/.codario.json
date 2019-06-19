@@ -1,23 +1,23 @@
 {
-"integrations": {
-  "continuous_delivery": [
-      {
-        "credential": "ssh.test-server"
-      }
-    ]
+  "integrations": {
   },
   "update_behavior": {
-        "source_branch": "stage-demo",
-        "destination_branch": "stage/updates/[task:id]",
-        "auto_start_updates": "no",
-        "skip_manual_testing": "no"
-    },
+    "auto_start_updates": "no",
+    "skip_manual_testing": "no",
+    "source_branch": "stage-demo",
+    "destination_branch": "updates/[task:id]",
+    "handle_packages": "dev_and_prod",
+    "create_tasks_for": "all_packages"
+  },
   "events": {
-    "new_updates_available": [
-     {
-        "ssh_script": {
-          "connection": "ssh.test-server",
-          "script": "[snippet:ssh.create-file]"
+    "test_passed": [
+      {
+        "merge_branch": {
+          "source": "updates/[task:id]",
+          "delete_after_merge": "yes",
+          "target": [
+            "stage-demo"
+          ]
         }
       }
     ]
