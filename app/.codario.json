@@ -6,7 +6,7 @@
     "skip_manual_testing": "no",
     "source_branch": "dev/updates/10000034",
     "destination_branch": "updates/[task:id]",
-        "handle_packages": "prod_only",
+        "handle_packages": "dev_and_prod",
     "create_tasks_for": "contains_vulnerable_packages"
   },
   "events": {
